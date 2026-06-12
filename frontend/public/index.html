@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delivery Fraud Agent - Risk Scorer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+      background: #0f1419;
+      color: #e4e6eb;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      background: #1a1f2e;
+      border-bottom: 1px solid #2a3142;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar h1 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .status {
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .search-box {
+      background: #1a1f2e;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      border: 1px solid #2a3142;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #2a3142;
+      border-radius: 4px;
+      background: #0f1419;
+      color: #e4e6eb;
+      font-size: 1rem;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: #4a90e2;
+      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    }
+
+    .search-box button {
+      background: #4a90e2;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 1rem;
+      transition: background 0.3s;
+    }
+
+    .search-box button:hover {
+      background: #357abd;
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: #1a1f2e;
+      border: 1px solid #2a3142;
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      border-color: #4a90e2;
+      box-shadow: 0 4px 12px rgba(74, 144, 226, 0.15);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .card .meta {
+      font-size: 0.9rem;
+      color: #888;
+      margin-bottom: 1rem;
+    }
+
+    .risk-score {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 1rem 0;
+      padding: 1rem;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .risk-score.low {
+      background: rgba(76, 175, 80, 0.1);
+      color: #4caf50;
+    }
+
+    .risk-score.medium {
+      background: rgba(255, 152, 0, 0.1);
+      color: #ff9800;
+    }
+
+    .risk-score.high {
+      background: rgba(244, 67, 54, 0.1);
+      color: #f44336;
+    }
+
+    .risk-score.critical {
+      background: rgba(156, 39, 176, 0.1);
+      color: #9c27b0;
+    }
+
+    .recommendation {
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .recommendation.pass {
+      background: rgba(76, 175, 80, 0.1);
+      color: #4caf50;
+    }
+
+    .recommendation.alert {
+      background: rgba(255, 152, 0, 0.1);
+      color: #ff9800;
+    }
+
+    .recommendation.escalate {
+      background: rgba(244, 67, 54, 0.1);
+      color: #f44336;
+    }
+
+    .sources {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+
+    .source-item {
+      padding: 0.5rem 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: #888;
+    }
+
+    .error {
+      background: rgba(244, 67, 54, 0.1);
+      color: #f44336;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #2a3142;
+    }
+
+    .tab {
+      padding: 1rem 1.5rem;
+      background: none;
+      border: none;
+      color: #888;
+      cursor: pointer;
+      font-size: 1rem;
+      border-bottom: 2px solid transparent;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .tab.active {
+      color: #4a90e2;
+      border-bottom-color: #4a90e2;
+    }
+
+    .tab:hover {
+      color: #e4e6eb;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat {
+      background: #1a1f2e;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #2a3142;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #4a90e2;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <h1>🚚 Delivery Fraud Agent</h1>
+    <div class="status">
+      <span>✅ Day 1: Consensus Engine Live</span> | 
+      <span id="api-status">API: Checking...</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Tab Navigation -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('search')">Search PIN</button>
+      <button class="tab" onclick="switchTab('high-risk')">High-Risk Areas</button>
+      <button class="tab" onclick="switchTab('stats')">Statistics</button>
+    </div>
+
+    <!-- Search Tab -->
+    <div id="search-tab" class="tab-content">
+      <div class="search-box">
+        <h2>Search PIN Code or Region</h2>
+        <input type="text" id="search-input" placeholder="e.g., 110001, Delhi, Mumbai..." onkeypress="if(event.key==='Enter') searchPincode()">
+        <button onclick="searchPincode()">Search</button>
+      </div>
+      <div id="results"></div>
+    </div>
+
+    <!-- High-Risk Tab -->
+    <div id="high-risk-tab" class="tab-content" style="display:none;">
+      <div class="search-box">
+        <h2>High-Risk Delivery Areas</h2>
+        <p style="color: #888; margin-top: 0.5rem;">PIN codes with fraud risk > 65%</p>
+      </div>
+      <div id="high-risk-results"></div>
+    </div>
+
+    <!-- Stats Tab -->
+    <div id="stats-tab" class="tab-content" style="display:none;">
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-value" id="total-pins">-</div>
+          <div class="stat-label">Total PIN Codes</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="high-risk-count">-</div>
+          <div class="stat-label">High-Risk Areas</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="avg-fraud">-</div>
+          <div class="stat-label">Avg Fraud Rate</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="avg-rto">-</div>
+          <div class="stat-label">Avg RTO Rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = 'http://localhost:3000';
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      
+      document.getElementById(tabName + '-tab').style.display = 'block';
+      event.target.classList.add('active');
+
+      if (tabName === 'high-risk') {
+        loadHighRisk();
+      } else if (tabName === 'stats') {
+        loadStats();
+      }
+    }
+
+    async function searchPincode() {
+      const query = document.getElementById('search-input').value.trim();
+      if (!query) {
+        alert('Please enter a PIN code or region');
+        return;
+      }
+
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = '<div class="loading">Searching...</div>';
+
+      try {
+        const response = await fetch(`${API_BASE}/api/pincodes/search?q=${encodeURIComponent(query)}`);
+        const data = await response.json();
+
+        if (data.results.length === 0) {
+          resultsDiv.innerHTML = '<div class="error">No results found</div>';
+          return;
+        }
+
+        // Get consensus for each result
+        const cards = await Promise.all(
+          data.results.map(async (result) => {
+            const consensusRes = await fetch(`${API_BASE}/api/pincode/${result.pincode}/consensus`);
+            const consensusData = await consensusRes.json();
+            return { ...result, consensus: consensusData.consensus };
+          })
+        );
+
+        resultsDiv.innerHTML = cards.map(card => `
+          <div class="card">
+            <h3>${card.pincode}</h3>
+            <div class="meta">${card.region} • ${card.city}, ${card.state}</div>
+            <div class="risk-score ${card.consensus.riskTier}">${(card.consensus.fraudRiskScore * 100).toFixed(1)}%</div>
+            <div class="recommendation ${getRecommendationClass(card.consensus.recommendation)}">
+              ${card.consensus.recommendation.replace(/_/g, ' ').toUpperCase()}
+            </div>
+            <div class="sources">
+              <strong>Sources:</strong>
+              ${card.consensus.sources.map(s => `
+                <div class="source-item">
+                  <span>${s.partner}: ${(s.fraudRisk * 100).toFixed(1)}%</span>
+                  <span style="color: #666;">conf: ${(s.confidence * 100).toFixed(0)}%</span>
+                </div>
+              `).join('')}
+              <div style="margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid #2a3142;">
+                Agreement: ${(card.consensus.sourceAgreement * 100).toFixed(0)}%
+              </div>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        resultsDiv.innerHTML = `<div class="error">Error: ${err.message}</div>`;
+      }
+    }
+
+    async function loadHighRisk() {
+      const resultsDiv = document.getElementById('high-risk-results');
+      resultsDiv.innerHTML = '<div class="loading">Loading high-risk areas...</div>';
+
+      try {
+        const response = await fetch(`${API_BASE}/api/pincodes/high-risk?threshold=0.65`);
+        const data = await response.json();
+
+        if (data.pincodes.length === 0) {
+          resultsDiv.innerHTML = '<div class="error">No high-risk areas found</div>';
+          return;
+        }
+
+        resultsDiv.innerHTML = data.pincodes.map(pin => `
+          <div class="card">
+            <h3>${pin.pincode}</h3>
+            <div class="meta">${pin.region} • ${pin.city}</div>
+            <div class="risk-score high">${(pin.expectedFraudRisk * 100).toFixed(1)}%</div>
+            <div style="margin-top: 1rem; font-size: 0.9rem;">
+              <div>🔴 RTO Rate: ${(pin.expectedRtoRisk * 100).toFixed(1)}%</div>
+              <div style="margin-top: 0.5rem;">⚠️ Recommendation: ${pin.recommendation.replace(/_/g, ' ').toUpperCase()}</div>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        resultsDiv.innerHTML = `<div class="error">Error: ${err.message}</div>`;
+      }
+    }
+
+    async function loadStats() {
+      try {
+        const allRes = await fetch(`${API_BASE}/api/pincodes/all`);
+        const allData = await allRes.json();
+
+        const highRiskRes = await fetch(`${API_BASE}/api/pincodes/high-risk?threshold=0.65`);
+        const highRiskData = await highRiskRes.json();
+
+        const totalFraud = highRiskData.pincodes.reduce((sum, p) => sum + p.expectedFraudRisk, 0);
+        const avgFraud = (totalFraud / highRiskData.pincodes.length * 100).toFixed(1);
+
+        const totalRto = highRiskData.pincodes.reduce((sum, p) => sum + p.expectedRtoRisk, 0);
+        const avgRto = (totalRto / highRiskData.pincodes.length * 100).toFixed(1);
+
+        document.getElementById('total-pins').textContent = allData.total;
+        document.getElementById('high-risk-count').textContent = highRiskData.total;
+        document.getElementById('avg-fraud').textContent = avgFraud + '%';
+        document.getElementById('avg-rto').textContent = avgRto + '%';
+      } catch (err) {
+        console.error('Stats error:', err);
+      }
+    }
+
+    function getRecommendationClass(recommendation) {
+      if (recommendation === 'pass') return 'pass';
+      if (recommendation === 'whatsapp_alert') return 'alert';
+      if (recommendation === 'escalate_ivr' || recommendation === 'manual_review') return 'escalate';
+      return 'alert';
+    }
+
+    // Check API status on load
+    async function checkAPI() {
+      try {
+        const response = await fetch(`${API_BASE}/health`);
+        if (response.ok) {
+          document.getElementById('api-status').textContent = 'API: Online ✅';
+        }
+      } catch (err) {
+        document.getElementById('api-status').textContent = 'API: Offline ❌';
+      }
+    }
+
+    checkAPI();
+  </script>
+</body>
+</html>

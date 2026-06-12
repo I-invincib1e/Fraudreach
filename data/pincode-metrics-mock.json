@@ -1,0 +1,843 @@
+{
+  "metadata": {
+    "generatedAt": "2026-06-10T14:00:00Z",
+    "regions": [
+      "Delhi NCR",
+      "Mumbai Metro",
+      "Bangalore",
+      "Hyderabad",
+      "Chennai",
+      "Kolkata",
+      "Pune",
+      "Ahmedabad"
+    ],
+    "totalPins": 15,
+    "note": "Realistic fraud/RTO patterns based on Indian logistics network. All 3 partners included.",
+    "totalPincodes": 20
+  },
+  "pinCodes": {
+    "110001": {
+      "region": "Delhi Central",
+      "state": "Delhi",
+      "city": "New Delhi",
+      "tier": "Metro",
+      "delhivery": {
+        "fraudRate": 0.075,
+        "rtoRate": 0.38,
+        "cancellationRate": 0.12,
+        "refundRate": 0.04,
+        "avgDeliveryDays": 2.1,
+        "totalOrders": 3450,
+        "confidence": 0.95,
+        "note": "High confidence (3400+ orders, metro area)"
+      },
+      "ekart": {
+        "fraudRate": 0.082,
+        "rtoRate": 0.4,
+        "cancellationRate": 0.13,
+        "refundRate": 0.05,
+        "avgDeliveryDays": 2.2,
+        "totalOrders": 2890,
+        "confidence": 0.92
+      },
+      "shiprocket": {
+        "fraudRate": 0.07,
+        "rtoRate": 0.36,
+        "cancellationRate": 0.11,
+        "refundRate": 0.03,
+        "avgDeliveryDays": 2.0,
+        "totalOrders": 2150,
+        "confidence": 0.88
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.076,
+        "expectedRtoRisk": 0.38,
+        "expectedSourceAgreement": 0.94,
+        "recommendation": "pass"
+      }
+    },
+    "400001": {
+      "region": "Mumbai Central",
+      "state": "Maharashtra",
+      "city": "Mumbai",
+      "tier": "Metro",
+      "delhivery": {
+        "fraudRate": 0.125,
+        "rtoRate": 0.52,
+        "cancellationRate": 0.18,
+        "refundRate": 0.07,
+        "avgDeliveryDays": 2.8,
+        "totalOrders": 4200,
+        "confidence": 0.96,
+        "note": "Highest tier metro, high activity but also high fraud"
+      },
+      "ekart": {
+        "fraudRate": 0.138,
+        "rtoRate": 0.56,
+        "cancellationRate": 0.2,
+        "refundRate": 0.08,
+        "avgDeliveryDays": 2.9,
+        "totalOrders": 3650,
+        "confidence": 0.94
+      },
+      "shiprocket": {
+        "fraudRate": 0.11,
+        "rtoRate": 0.48,
+        "cancellationRate": 0.16,
+        "refundRate": 0.06,
+        "avgDeliveryDays": 2.6,
+        "totalOrders": 2900,
+        "confidence": 0.91
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.124,
+        "expectedRtoRisk": 0.52,
+        "expectedSourceAgreement": 0.88,
+        "recommendation": "escalate_ivr"
+      }
+    },
+    "560001": {
+      "region": "Bangalore Central",
+      "state": "Karnataka",
+      "city": "Bangalore",
+      "tier": "Metro",
+      "delhivery": {
+        "fraudRate": 0.058,
+        "rtoRate": 0.32,
+        "cancellationRate": 0.09,
+        "refundRate": 0.03,
+        "avgDeliveryDays": 1.9,
+        "totalOrders": 3100,
+        "confidence": 0.93
+      },
+      "ekart": {
+        "fraudRate": 0.065,
+        "rtoRate": 0.35,
+        "cancellationRate": 0.1,
+        "refundRate": 0.04,
+        "avgDeliveryDays": 2.0,
+        "totalOrders": 2700,
+        "confidence": 0.9
+      },
+      "shiprocket": {
+        "fraudRate": 0.052,
+        "rtoRate": 0.28,
+        "cancellationRate": 0.08,
+        "refundRate": 0.02,
+        "avgDeliveryDays": 1.8,
+        "totalOrders": 2400,
+        "confidence": 0.87
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.058,
+        "expectedRtoRisk": 0.32,
+        "expectedSourceAgreement": 0.92,
+        "recommendation": "pass"
+      }
+    },
+    "500001": {
+      "region": "Hyderabad Central",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "tier": "Tier-1",
+      "delhivery": {
+        "fraudRate": 0.092,
+        "rtoRate": 0.44,
+        "cancellationRate": 0.14,
+        "refundRate": 0.05,
+        "avgDeliveryDays": 2.5,
+        "totalOrders": 2850,
+        "confidence": 0.89
+      },
+      "ekart": {
+        "fraudRate": 0.105,
+        "rtoRate": 0.48,
+        "cancellationRate": 0.16,
+        "refundRate": 0.06,
+        "avgDeliveryDays": 2.7,
+        "totalOrders": 2300,
+        "confidence": 0.85
+      },
+      "shiprocket": {
+        "fraudRate": 0.078,
+        "rtoRate": 0.4,
+        "cancellationRate": 0.12,
+        "refundRate": 0.04,
+        "avgDeliveryDays": 2.3,
+        "totalOrders": 1950,
+        "confidence": 0.82
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.092,
+        "expectedRtoRisk": 0.44,
+        "expectedSourceAgreement": 0.8,
+        "recommendation": "whatsapp_alert"
+      }
+    },
+    "600001": {
+      "region": "Chennai Central",
+      "state": "Tamil Nadu",
+      "city": "Chennai",
+      "tier": "Tier-1",
+      "delhivery": {
+        "fraudRate": 0.068,
+        "rtoRate": 0.36,
+        "cancellationRate": 0.11,
+        "refundRate": 0.04,
+        "avgDeliveryDays": 2.3,
+        "totalOrders": 2650,
+        "confidence": 0.88
+      },
+      "ekart": {
+        "fraudRate": 0.075,
+        "rtoRate": 0.39,
+        "cancellationRate": 0.12,
+        "refundRate": 0.04,
+        "avgDeliveryDays": 2.4,
+        "totalOrders": 2100,
+        "confidence": 0.84
+      },
+      "shiprocket": {
+        "fraudRate": 0.062,
+        "rtoRate": 0.33,
+        "cancellationRate": 0.1,
+        "refundRate": 0.03,
+        "avgDeliveryDays": 2.2,
+        "totalOrders": 1800,
+        "confidence": 0.81
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.068,
+        "expectedRtoRisk": 0.36,
+        "expectedSourceAgreement": 0.88,
+        "recommendation": "pass"
+      }
+    },
+    "700001": {
+      "region": "Kolkata Central",
+      "state": "West Bengal",
+      "city": "Kolkata",
+      "tier": "Tier-1",
+      "delhivery": {
+        "fraudRate": 0.105,
+        "rtoRate": 0.48,
+        "cancellationRate": 0.16,
+        "refundRate": 0.06,
+        "avgDeliveryDays": 2.9,
+        "totalOrders": 2200,
+        "confidence": 0.82
+      },
+      "ekart": {
+        "fraudRate": 0.128,
+        "rtoRate": 0.54,
+        "cancellationRate": 0.19,
+        "refundRate": 0.07,
+        "avgDeliveryDays": 3.1,
+        "totalOrders": 1800,
+        "confidence": 0.78
+      },
+      "shiprocket": {
+        "fraudRate": 0.092,
+        "rtoRate": 0.42,
+        "cancellationRate": 0.14,
+        "refundRate": 0.05,
+        "avgDeliveryDays": 2.7,
+        "totalOrders": 1650,
+        "confidence": 0.75
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.108,
+        "expectedRtoRisk": 0.48,
+        "expectedSourceAgreement": 0.7,
+        "recommendation": "escalate_ivr"
+      }
+    },
+    "411001": {
+      "region": "Pune Central",
+      "state": "Maharashtra",
+      "city": "Pune",
+      "tier": "Tier-1",
+      "delhivery": {
+        "fraudRate": 0.085,
+        "rtoRate": 0.4,
+        "cancellationRate": 0.13,
+        "refundRate": 0.05,
+        "avgDeliveryDays": 2.4,
+        "totalOrders": 2400,
+        "confidence": 0.87
+      },
+      "ekart": {
+        "fraudRate": 0.095,
+        "rtoRate": 0.44,
+        "cancellationRate": 0.15,
+        "refundRate": 0.05,
+        "avgDeliveryDays": 2.6,
+        "totalOrders": 2000,
+        "confidence": 0.84
+      },
+      "shiprocket": {
+        "fraudRate": 0.078,
+        "rtoRate": 0.37,
+        "cancellationRate": 0.12,
+        "refundRate": 0.04,
+        "avgDeliveryDays": 2.2,
+        "totalOrders": 1700,
+        "confidence": 0.8
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.086,
+        "expectedRtoRisk": 0.4,
+        "expectedSourceAgreement": 0.83,
+        "recommendation": "pass"
+      }
+    },
+    "380001": {
+      "region": "Ahmedabad Central",
+      "state": "Gujarat",
+      "city": "Ahmedabad",
+      "tier": "Tier-1",
+      "delhivery": {
+        "fraudRate": 0.072,
+        "rtoRate": 0.35,
+        "cancellationRate": 0.11,
+        "refundRate": 0.04,
+        "avgDeliveryDays": 2.2,
+        "totalOrders": 2300,
+        "confidence": 0.85
+      },
+      "ekart": {
+        "fraudRate": 0.082,
+        "rtoRate": 0.38,
+        "cancellationRate": 0.12,
+        "refundRate": 0.04,
+        "avgDeliveryDays": 2.3,
+        "totalOrders": 1950,
+        "confidence": 0.82
+      },
+      "shiprocket": {
+        "fraudRate": 0.065,
+        "rtoRate": 0.32,
+        "cancellationRate": 0.1,
+        "refundRate": 0.03,
+        "avgDeliveryDays": 2.1,
+        "totalOrders": 1650,
+        "confidence": 0.78
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.073,
+        "expectedRtoRisk": 0.35,
+        "expectedSourceAgreement": 0.85,
+        "recommendation": "pass"
+      }
+    },
+    "450001": {
+      "region": "Jabalpur",
+      "state": "Madhya Pradesh",
+      "city": "Jabalpur",
+      "tier": "Tier-2",
+      "delhivery": {
+        "fraudRate": 0.158,
+        "rtoRate": 0.62,
+        "cancellationRate": 0.22,
+        "refundRate": 0.09,
+        "avgDeliveryDays": 4.1,
+        "totalOrders": 890,
+        "confidence": 0.72,
+        "note": "Tier-2 city, high fraud variance"
+      },
+      "ekart": {
+        "fraudRate": 0.142,
+        "rtoRate": 0.58,
+        "cancellationRate": 0.2,
+        "refundRate": 0.08,
+        "avgDeliveryDays": 3.9,
+        "totalOrders": 720,
+        "confidence": 0.68
+      },
+      "shiprocket": {
+        "fraudRate": 0.185,
+        "rtoRate": 0.68,
+        "cancellationRate": 0.25,
+        "refundRate": 0.1,
+        "avgDeliveryDays": 4.3,
+        "totalOrders": 650,
+        "confidence": 0.65
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.162,
+        "expectedRtoRisk": 0.63,
+        "expectedSourceAgreement": 0.65,
+        "recommendation": "manual_review"
+      }
+    },
+    "751001": {
+      "region": "Bhubaneswar",
+      "state": "Odisha",
+      "city": "Bhubaneswar",
+      "tier": "Tier-2",
+      "delhivery": {
+        "fraudRate": 0.148,
+        "rtoRate": 0.58,
+        "cancellationRate": 0.2,
+        "refundRate": 0.08,
+        "avgDeliveryDays": 3.8,
+        "totalOrders": 750,
+        "confidence": 0.7
+      },
+      "ekart": {
+        "fraudRate": 0.165,
+        "rtoRate": 0.64,
+        "cancellationRate": 0.23,
+        "refundRate": 0.09,
+        "avgDeliveryDays": 4.1,
+        "totalOrders": 680,
+        "confidence": 0.67
+      },
+      "shiprocket": {
+        "fraudRate": 0.132,
+        "rtoRate": 0.52,
+        "cancellationRate": 0.18,
+        "refundRate": 0.07,
+        "avgDeliveryDays": 3.5,
+        "totalOrders": 620,
+        "confidence": 0.64
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.148,
+        "expectedRtoRisk": 0.58,
+        "expectedSourceAgreement": 0.6,
+        "recommendation": "manual_review"
+      }
+    },
+    "302001": {
+      "region": "Jaipur Central",
+      "state": "Rajasthan",
+      "city": "Jaipur",
+      "tier": "Tier-1",
+      "delhivery": {
+        "fraudRate": 0.095,
+        "rtoRate": 0.42,
+        "cancellationRate": 0.14,
+        "refundRate": 0.05,
+        "avgDeliveryDays": 2.6,
+        "totalOrders": 1950,
+        "confidence": 0.81
+      },
+      "ekart": {
+        "fraudRate": 0.108,
+        "rtoRate": 0.46,
+        "cancellationRate": 0.16,
+        "refundRate": 0.06,
+        "avgDeliveryDays": 2.8,
+        "totalOrders": 1650,
+        "confidence": 0.78
+      },
+      "shiprocket": {
+        "fraudRate": 0.082,
+        "rtoRate": 0.38,
+        "cancellationRate": 0.12,
+        "refundRate": 0.04,
+        "avgDeliveryDays": 2.4,
+        "totalOrders": 1400,
+        "confidence": 0.75
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.095,
+        "expectedRtoRisk": 0.42,
+        "expectedSourceAgreement": 0.75,
+        "recommendation": "whatsapp_alert"
+      }
+    },
+    "180001": {
+      "region": "Chandigarh",
+      "state": "Chandigarh",
+      "city": "Chandigarh",
+      "tier": "Tier-1",
+      "delhivery": {
+        "fraudRate": 0.065,
+        "rtoRate": 0.32,
+        "cancellationRate": 0.1,
+        "refundRate": 0.03,
+        "avgDeliveryDays": 2.0,
+        "totalOrders": 1800,
+        "confidence": 0.83
+      },
+      "ekart": {
+        "fraudRate": 0.072,
+        "rtoRate": 0.35,
+        "cancellationRate": 0.11,
+        "refundRate": 0.04,
+        "avgDeliveryDays": 2.1,
+        "totalOrders": 1550,
+        "confidence": 0.8
+      },
+      "shiprocket": {
+        "fraudRate": 0.058,
+        "rtoRate": 0.29,
+        "cancellationRate": 0.09,
+        "refundRate": 0.03,
+        "avgDeliveryDays": 1.9,
+        "totalOrders": 1300,
+        "confidence": 0.77
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.065,
+        "expectedRtoRisk": 0.32,
+        "expectedSourceAgreement": 0.86,
+        "recommendation": "pass"
+      }
+    },
+    "201001": {
+      "region": "Noida",
+      "state": "Uttar Pradesh",
+      "city": "Noida",
+      "tier": "Metro Adjacent",
+      "delhivery": {
+        "fraudRate": 0.082,
+        "rtoRate": 0.39,
+        "cancellationRate": 0.13,
+        "refundRate": 0.04,
+        "avgDeliveryDays": 2.2,
+        "totalOrders": 2950,
+        "confidence": 0.91
+      },
+      "ekart": {
+        "fraudRate": 0.09,
+        "rtoRate": 0.42,
+        "cancellationRate": 0.14,
+        "refundRate": 0.05,
+        "avgDeliveryDays": 2.3,
+        "totalOrders": 2600,
+        "confidence": 0.88
+      },
+      "shiprocket": {
+        "fraudRate": 0.075,
+        "rtoRate": 0.36,
+        "cancellationRate": 0.12,
+        "refundRate": 0.04,
+        "avgDeliveryDays": 2.1,
+        "totalOrders": 2200,
+        "confidence": 0.85
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.082,
+        "expectedRtoRisk": 0.39,
+        "expectedSourceAgreement": 0.9,
+        "recommendation": "pass"
+      }
+    },
+    "144001": {
+      "region": "Ludhiana",
+      "state": "Punjab",
+      "city": "Ludhiana",
+      "tier": "Tier-2",
+      "delhivery": {
+        "fraudRate": 0.118,
+        "rtoRate": 0.5,
+        "cancellationRate": 0.17,
+        "refundRate": 0.06,
+        "avgDeliveryDays": 3.0,
+        "totalOrders": 1400,
+        "confidence": 0.76
+      },
+      "ekart": {
+        "fraudRate": 0.132,
+        "rtoRate": 0.54,
+        "cancellationRate": 0.19,
+        "refundRate": 0.07,
+        "avgDeliveryDays": 3.2,
+        "totalOrders": 1200,
+        "confidence": 0.73
+      },
+      "shiprocket": {
+        "fraudRate": 0.105,
+        "rtoRate": 0.46,
+        "cancellationRate": 0.15,
+        "refundRate": 0.05,
+        "avgDeliveryDays": 2.8,
+        "totalOrders": 1050,
+        "confidence": 0.7
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.118,
+        "expectedRtoRisk": 0.5,
+        "expectedSourceAgreement": 0.72,
+        "recommendation": "escalate_ivr"
+      }
+    },
+    "800001": {
+      "region": "Patna Urban",
+      "state": "Bihar",
+      "city": "Patna",
+      "tier": "Tier-2",
+      "delhivery": {
+        "fraudRate": 0.55,
+        "rtoRate": 0.68,
+        "cancellationRate": 0.28,
+        "refundRate": 0.2,
+        "avgDeliveryDays": 4.2,
+        "totalOrders": 1200,
+        "confidence": 0.72
+      },
+      "ekart": {
+        "fraudRate": 0.52,
+        "rtoRate": 0.65,
+        "cancellationRate": 0.26,
+        "refundRate": 0.18,
+        "avgDeliveryDays": 4.5,
+        "totalOrders": 980,
+        "confidence": 0.68
+      },
+      "shiprocket": {
+        "fraudRate": 0.5,
+        "rtoRate": 0.62,
+        "cancellationRate": 0.24,
+        "refundRate": 0.17,
+        "avgDeliveryDays": 4.8,
+        "totalOrders": 720,
+        "confidence": 0.62
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.228,
+        "expectedRtoRisk": 0.36,
+        "expectedSourceAgreement": 0.78,
+        "recommendation": "escalate_ivr"
+      }
+    },
+    "226001": {
+      "region": "Lucknow Central",
+      "state": "Uttar Pradesh",
+      "city": "Lucknow",
+      "tier": "Tier-2",
+      "delhivery": {
+        "fraudRate": 0.42,
+        "rtoRate": 0.52,
+        "cancellationRate": 0.18,
+        "refundRate": 0.13,
+        "avgDeliveryDays": 3.8,
+        "totalOrders": 1680,
+        "confidence": 0.74
+      },
+      "ekart": {
+        "fraudRate": 0.39,
+        "rtoRate": 0.5,
+        "cancellationRate": 0.17,
+        "refundRate": 0.12,
+        "avgDeliveryDays": 4.1,
+        "totalOrders": 1420,
+        "confidence": 0.7
+      },
+      "shiprocket": {
+        "fraudRate": 0.4,
+        "rtoRate": 0.51,
+        "cancellationRate": 0.17,
+        "refundRate": 0.12,
+        "avgDeliveryDays": 4.4,
+        "totalOrders": 980,
+        "confidence": 0.64
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.58,
+        "expectedRtoRisk": 0.3,
+        "expectedSourceAgreement": 0.81,
+        "recommendation": "whatsapp_alert"
+      }
+    },
+    "400050": {
+      "region": "Mumbai Suburbs",
+      "state": "Maharashtra",
+      "city": "Mumbai West",
+      "tier": "Metro",
+      "delhivery": {
+        "fraudRate": 0.09,
+        "rtoRate": 0.15,
+        "cancellationRate": 0.05,
+        "refundRate": 0.04,
+        "avgDeliveryDays": 2.5,
+        "totalOrders": 3200,
+        "confidence": 0.91
+      },
+      "ekart": {
+        "fraudRate": 0.1,
+        "rtoRate": 0.16,
+        "cancellationRate": 0.06,
+        "refundRate": 0.04,
+        "avgDeliveryDays": 2.6,
+        "totalOrders": 2850,
+        "confidence": 0.89
+      },
+      "shiprocket": {
+        "fraudRate": 0.09,
+        "rtoRate": 0.15,
+        "cancellationRate": 0.05,
+        "refundRate": 0.03,
+        "avgDeliveryDays": 2.4,
+        "totalOrders": 2100,
+        "confidence": 0.88
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.093,
+        "expectedRtoRisk": 0.153,
+        "expectedSourceAgreement": 0.91,
+        "recommendation": "approve"
+      }
+    },
+    "110020": {
+      "region": "South Delhi",
+      "state": "Delhi",
+      "city": "Delhi SW",
+      "tier": "Metro",
+      "delhivery": {
+        "fraudRate": 0.22,
+        "rtoRate": 0.35,
+        "cancellationRate": 0.14,
+        "refundRate": 0.1,
+        "avgDeliveryDays": 3.1,
+        "totalOrders": 2100,
+        "confidence": 0.82
+      },
+      "ekart": {
+        "fraudRate": 0.21,
+        "rtoRate": 0.34,
+        "cancellationRate": 0.13,
+        "refundRate": 0.09,
+        "avgDeliveryDays": 3.3,
+        "totalOrders": 1850,
+        "confidence": 0.79
+      },
+      "shiprocket": {
+        "fraudRate": 0.22,
+        "rtoRate": 0.35,
+        "cancellationRate": 0.14,
+        "refundRate": 0.1,
+        "avgDeliveryDays": 3.4,
+        "totalOrders": 1300,
+        "confidence": 0.73
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.167,
+        "expectedRtoRisk": 0.277,
+        "expectedSourceAgreement": 0.85,
+        "recommendation": "whatsapp_alert"
+      }
+    },
+    "201301": {
+      "region": "Noida Sector 62",
+      "state": "Uttar Pradesh",
+      "city": "Noida",
+      "tier": "Metro",
+      "delhivery": {
+        "fraudRate": 0.09,
+        "rtoRate": 0.15,
+        "cancellationRate": 0.05,
+        "refundRate": 0.03,
+        "avgDeliveryDays": 2.4,
+        "totalOrders": 3800,
+        "confidence": 0.92
+      },
+      "ekart": {
+        "fraudRate": 0.08,
+        "rtoRate": 0.14,
+        "cancellationRate": 0.05,
+        "refundRate": 0.03,
+        "avgDeliveryDays": 2.5,
+        "totalOrders": 3500,
+        "confidence": 0.91
+      },
+      "shiprocket": {
+        "fraudRate": 0.09,
+        "rtoRate": 0.15,
+        "cancellationRate": 0.05,
+        "refundRate": 0.03,
+        "avgDeliveryDays": 2.3,
+        "totalOrders": 2600,
+        "confidence": 0.88
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.087,
+        "expectedRtoRisk": 0.147,
+        "expectedSourceAgreement": 0.93,
+        "recommendation": "approve"
+      }
+    },
+    "452001": {
+      "region": "Indore Central",
+      "state": "Madhya Pradesh",
+      "city": "Indore",
+      "tier": "Tier-2",
+      "delhivery": {
+        "fraudRate": 0.15,
+        "rtoRate": 0.25,
+        "cancellationRate": 0.1,
+        "refundRate": 0.07,
+        "avgDeliveryDays": 3.6,
+        "totalOrders": 1450,
+        "confidence": 0.76
+      },
+      "ekart": {
+        "fraudRate": 0.16,
+        "rtoRate": 0.26,
+        "cancellationRate": 0.11,
+        "refundRate": 0.08,
+        "avgDeliveryDays": 3.9,
+        "totalOrders": 1200,
+        "confidence": 0.72
+      },
+      "shiprocket": {
+        "fraudRate": 0.16,
+        "rtoRate": 0.26,
+        "cancellationRate": 0.11,
+        "refundRate": 0.08,
+        "avgDeliveryDays": 4.2,
+        "totalOrders": 820,
+        "confidence": 0.65
+      },
+      "consensus": {
+        "expectedFraudRisk": 0.157,
+        "expectedRtoRisk": 0.257,
+        "expectedSourceAgreement": 0.83,
+        "recommendation": "whatsapp_alert"
+      }
+    }
+  },
+  "riskTierSummary": {
+    "lowRisk": {
+      "pinCodes": [
+        "110001",
+        "560001",
+        "600001",
+        "180001",
+        "201001"
+      ],
+      "fraudRange": "5.8-8.2%",
+      "rtoRange": "32-39%"
+    },
+    "mediumRisk": {
+      "pinCodes": [
+        "500001",
+        "411001",
+        "380001",
+        "302001"
+      ],
+      "fraudRange": "8.6-9.5%",
+      "rtoRange": "40-44%"
+    },
+    "highRisk": {
+      "pinCodes": [
+        "400001",
+        "700001",
+        "144001"
+      ],
+      "fraudRange": "10.8-12.4%",
+      "rtoRange": "48-52%"
+    },
+    "veryHighRisk": {
+      "pinCodes": [
+        "450001",
+        "751001"
+      ],
+      "fraudRange": "14.8-16.2%",
+      "rtoRange": "58-63%"
+    }
+  }
+}

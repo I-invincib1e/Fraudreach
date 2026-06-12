@@ -1,0 +1,30 @@
+{
+  "name": "delivery-fraud-agent",
+  "version": "0.1.0",
+  "description": "Multi-source PIN code delivery fraud detection & risk scoring for Indian logistics",
+  "type": "module",
+  "main": "backend/server.js",
+  "scripts": {
+    "dev": "bun run backend/server.js",
+    "dev:frontend": "cd frontend && bunx vite",
+    "build": "cd frontend && bunx vite build",
+    "start": "node backend/server.js",
+    "test": "node backend/consensus-engine.test.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "twilio": "^4.10.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "4",
+    "bun-types": "latest",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "vite": "5"
+  }
+}
