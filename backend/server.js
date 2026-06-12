@@ -520,8 +520,9 @@ app.use((err, req, res, next) => {
 });
 
 // ===== START =====
-app.listen(PORT, () => {
-  console.log(`
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`
 ╔══════════════════════════════════════════════════════════════╗
 ║  🚚 Delivery Fraud Agent  —  Days 1-4 Complete              ║
 ╠══════════════════════════════════════════════════════════════╣
@@ -538,6 +539,7 @@ app.listen(PORT, () => {
   Review:    GET  /api/manual-review
   Shopify:   POST /api/shopify/simulate-order
 `);
-});
+  });
+}
 
 export default app;

@@ -9,7 +9,7 @@
     "dev:frontend": "cd frontend && bunx vite",
     "build": "cd frontend && bunx vite build",
     "start": "node backend/server.js",
-    "test": "node backend/consensus-engine.test.js"
+    "test": "bun test"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
