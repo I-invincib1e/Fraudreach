@@ -2,6 +2,11 @@
 
 **Multi-source PIN code-level fraud risk scoring for Indian logistics**
 
+![Dashboard Main](demo/dashboard_main.png)
+![High Risk PIN Dashboard](demo/dashboard_high_risk.png)
+
+![Demo Video](demo/demo-video.webp)
+
 A real-time delivery fraud detection system using consensus scoring from Delhivery, Ekart, and Shiprocket. Identifies high-risk delivery areas, triggers IVR verification calls, and sends WhatsApp alerts.
 
 **FAR AWAY 2026 Hackathon Submission** | 4-day solo build
